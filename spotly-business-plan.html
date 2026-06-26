@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Spotly — Business & Development Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --pine:#07271C; --forest:#0C3D2B; --emerald:#115C3F; --moss:#1C7A55;
+    --green-bright:#2E9B6E; --green-light:#57C893; --mint:#6FE3AE;
+    --mint-soft:rgba(111,227,174,.14); --mint-line:rgba(111,227,174,.30);
+    --gold:#E4B85B; --gold-deep:#C99A3D;
+    --cream:#F5F2E9; --cream-2:#ECE7D8; --paper:#FBFAF3;
+    --ink:#0A2A1E; --ink-soft:#3F564A; --ink-faint:#6C8175;
+    --cream-soft:rgba(245,242,233,.74); --cream-faint:rgba(245,242,233,.5);
+    --line-dark:rgba(245,242,233,.14); --line-light:rgba(10,42,30,.12);
+    --shadow-lg:0 30px 70px -30px rgba(0,0,0,.55); --shadow-md:0 18px 40px -22px rgba(10,42,30,.45);
+    --r-lg:26px; --r-md:18px; --maxw:1160px; --nav-h:72px;
+    --serif:"Fraunces",Georgia,"Times New Roman",serif;
+    --sans:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --mono:"Space Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--pine);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+  img,svg{display:block}
+  ::selection{background:var(--mint);color:var(--pine)}
+  :focus-visible{outline:2.5px solid var(--mint);outline-offset:3px;border-radius:4px}
+
+  .wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(20px,5vw,56px)}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
+
+  section{position:relative}
+  section[id]{scroll-margin-top:84px}
+  .section{padding-block:clamp(72px,9vw,128px)}
+  .section--light{background:var(--cream);color:var(--ink);border-radius:40px 40px 0 0;margin-top:-1px}
+  .section--paper{background:var(--paper);color:var(--ink)}
+  .section--pine{background:var(--pine);color:var(--cream)}
+  .section--forest{background:var(--forest);color:var(--cream)}
+
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:60;height:var(--nav-h);display:flex;align-items:center;background:rgba(7,39,28,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-dark)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:flex;align-items:center;gap:11px;color:var(--cream)}
+  .brand-mark{width:30px;height:30px;flex:none}
+  .brand-word{font-family:var(--serif);font-weight:600;font-size:1.45rem;letter-spacing:-.01em;line-height:1}
+  .brand-word b{color:var(--mint)}
+  .nav-links{display:flex;gap:6px}
+  .nav-links a{font-size:.82rem;font-weight:600;color:var(--cream-soft);padding:8px 14px;border-radius:999px;transition:color .2s,background .2s}
+  .nav-links a:hover{color:var(--cream)}
+  .nav-links a.active{color:var(--pine);background:var(--mint)}
+
+  /* HERO */
+  .hero{background:radial-gradient(120% 120% at 78% 10%,#0f4e36 0%,var(--pine) 52%);overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(40% 50% at 85% 30%,rgba(111,227,174,.16),transparent 70%)}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,72px);align-items:center;padding-block:clamp(48px,7vw,84px)}
+  .hero-copy{max-width:600px}
+  .hero .eyebrow{color:var(--mint);margin-bottom:22px;display:flex;align-items:center;gap:12px}
+  .hero .eyebrow::after{content:"";height:1px;width:56px;background:var(--mint-line)}
+  .hero h1{font-family:var(--serif);font-weight:600;font-optical-sizing:auto;font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.02;letter-spacing:-.02em;color:var(--cream);margin-bottom:24px}
+  .hero h1 em{font-style:italic;color:var(--mint)}
+  .hero-sub{font-size:clamp(1.02rem,1.6vw,1.18rem);color:var(--cream-soft);max-width:46ch}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:.95rem;padding:14px 24px;border-radius:999px;transition:transform .2s,background .2s,box-shadow .2s}
+  .btn-primary{background:var(--mint);color:var(--pine)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(111,227,174,.5)}
+  .btn-ghost{color:var(--cream);border:1px solid var(--line-dark)}
+  .btn-ghost:hover{background:rgba(245,242,233,.07);transform:translateY(-2px)}
+  .btn svg{width:17px;height:17px}
+  .hero-stats{display:grid;grid-template-columns:repeat(4,auto);gap:clamp(20px,3vw,42px);margin-top:50px;padding-top:34px;border-top:1px solid var(--line-dark)}
+  .stat-num{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.2vw,2.5rem);color:var(--gold);line-height:1;letter-spacing:-.01em}
+  .stat-label{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-faint);margin-top:8px}
+
+  /* PHONE */
+  .hero-vis{display:flex;justify-content:center;align-items:center}
+  .phone-stage{position:relative}
+  .phone-glow{position:absolute;inset:-14% -8%;background:radial-gradient(circle at 50% 40%,rgba(111,227,174,.22),transparent 65%);filter:blur(8px);z-index:0}
+  .phone{position:relative;z-index:1;width:clamp(248px,26vw,288px);aspect-ratio:9/18.6;background:linear-gradient(160deg,#0a3325,#062018);border-radius:42px;padding:13px;box-shadow:var(--shadow-lg),inset 0 0 0 1.5px rgba(111,227,174,.18)}
+  .phone-screen{position:relative;height:100%;border-radius:30px;overflow:hidden;background:linear-gradient(180deg,var(--paper),#f1ecdd);display:flex;flex-direction:column}
+  .scr-status{display:flex;justify-content:space-between;align-items:center;padding:13px 18px 4px;font-family:var(--mono);font-size:.62rem;color:var(--ink-soft)}
+  .scr-status .dots{display:flex;gap:3px}
+  .scr-status .dots i{width:5px;height:5px;border-radius:50%;background:var(--ink-faint)}
+  .scr-head{padding:4px 18px 10px}
+  .scr-head .hi{font-size:.66rem;color:var(--ink-faint);font-family:var(--mono);letter-spacing:.05em}
+  .scr-head .word{font-family:var(--serif);font-weight:600;font-size:1.2rem;color:var(--ink);line-height:1.1}
+  .scr-word b{color:var(--emerald)}
+  .scr-context{margin:0 14px 12px;padding:9px 13px;border-radius:12px;background:#fff;display:flex;align-items:center;gap:9px;box-shadow:0 4px 14px -8px rgba(10,42,30,.3)}
+  .scr-context svg{width:16px;height:16px;color:var(--moss);flex:none}
+  .scr-context .ct-label{font-size:.78rem;font-weight:700;color:var(--ink)}
+  .scr-body{flex:1;padding:0 14px;display:flex;flex-direction:column;min-height:0}
+  .scr-card{border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 8px 22px -14px rgba(10,42,30,.4);transition:opacity .42s ease,transform .42s ease}
+  .scr-card.swap{opacity:0;transform:translateY(10px)}
+  .scr-img{height:96px;position:relative;display:flex;align-items:center;justify-content:center}
+  .scr-img svg{width:38px;height:38px;color:rgba(255,255,255,.92);position:relative;z-index:1}
+  .scr-img .tag{position:absolute;top:9px;left:9px;z-index:2;font-family:var(--mono);font-size:.56rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:rgba(7,39,28,.32);padding:4px 8px;border-radius:6px;backdrop-filter:blur(3px)}
+  .scr-info{padding:11px 13px}
+  .scr-title{font-size:.92rem;font-weight:700;color:var(--ink);line-height:1.2}
+  .scr-meta{font-size:.72rem;color:var(--ink-faint);margin-top:3px}
+  .scr-confirm{margin-top:auto;margin-bottom:12px;display:flex;align-items:center;gap:9px;background:var(--emerald);color:#fff;border-radius:12px;padding:11px 14px;transition:opacity .42s ease,transform .42s ease}
+  .scr-confirm.swap{opacity:0;transform:translateY(8px)}
+  .scr-confirm .ck{width:20px;height:20px;border-radius:50%;background:var(--mint);color:var(--pine);display:flex;align-items:center;justify-content:center;flex:none}
+  .scr-confirm .ck svg{width:12px;height:12px}
+  .scr-confirm .cf-text{font-size:.76rem;font-weight:700;line-height:1.25}
+  .scr-confirm .cf-text small{display:block;font-weight:400;opacity:.8;font-size:.66rem}
+  .scr-tabs{display:flex;justify-content:space-around;padding:10px 8px 14px;border-top:1px solid var(--line-light);background:#fff}
+  .scr-tab{width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:var(--ink-faint);transition:.25s}
+  .scr-tab svg{width:18px;height:18px}
+  .scr-tab.active{background:var(--emerald);color:#fff}
+
+  .journey-pills{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:26px}
+  .jpill{font-size:.8rem;font-weight:600;padding:9px 15px;border-radius:999px;color:var(--cream-soft);border:1px solid var(--line-dark);transition:.22s;display:inline-flex;align-items:center;gap:7px}
+  .jpill svg{width:14px;height:14px}
+  .jpill:hover{color:var(--cream);border-color:var(--mint-line)}
+  .jpill.active{background:var(--mint);color:var(--pine);border-color:var(--mint)}
+
+  /* SECTION HEADING */
+  .head{max-width:760px;margin-bottom:clamp(40px,5vw,64px)}
+  .head .eyebrow{color:var(--moss);margin-bottom:18px}
+  .section--pine .head .eyebrow,.section--forest .head .eyebrow{color:var(--mint)}
+  .head h2{font-family:var(--serif);font-weight:600;font-optical-sizing:auto;font-size:clamp(2rem,4.4vw,3.1rem);line-height:1.06;letter-spacing:-.02em}
+  .head h2 em{font-style:italic;color:var(--moss)}
+  .section--pine .head h2 em,.section--forest .head h2 em{color:var(--mint)}
+  .head p{margin-top:18px;font-size:1.08rem;color:var(--ink-soft);max-width:60ch}
+  .section--pine .head p,.section--forest .head p{color:var(--cream-soft)}
+
+  /* VISION / EQUATION */
+  .equation{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1.25fr;gap:14px;align-items:stretch;margin-bottom:56px}
+  .eq-card{background:var(--paper);border:1px solid var(--line-light);border-radius:var(--r-md);padding:22px 20px;display:flex;flex-direction:column;gap:8px;transition:transform .25s,box-shadow .25s}
+  .eq-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+  .eq-card .like{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+  .eq-card .role{font-family:var(--serif);font-weight:600;font-size:1.2rem;color:var(--ink)}
+  .eq-card .desc{font-size:.86rem;color:var(--ink-soft)}
+  .eq-op{display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.8rem;color:var(--moss)}
+  .eq-result{background:var(--forest);color:var(--cream);border-radius:var(--r-md);padding:22px 20px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+  .eq-result .like{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mint)}
+  .eq-result .role{font-family:var(--serif);font-weight:600;font-size:1.7rem;color:var(--cream)}
+  .eq-result .role b{color:var(--mint)}
+  .eq-result .desc{font-size:.86rem;color:var(--cream-soft)}
+  .vision-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .v-item{padding-top:20px;border-top:2px solid var(--ink)}
+  .v-item .vn{font-family:var(--mono);font-size:.72rem;color:var(--moss);font-weight:700}
+  .v-item h3{font-family:var(--serif);font-weight:600;font-size:1.18rem;margin:8px 0 6px;color:var(--ink)}
+  .v-item p{font-size:.9rem;color:var(--ink-soft)}
+
+  /* PLATFORM */
+  .surfaces{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .surface{position:relative;background:rgba(245,242,233,.04);border:1px solid var(--line-dark);border-radius:var(--r-lg);padding:30px;overflow:hidden;transition:.3s}
+  .surface:hover{border-color:var(--mint-line);background:rgba(111,227,174,.05);transform:translateY(-4px)}
+  .surface-top{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+  .surface-icon{width:52px;height:52px;border-radius:15px;background:var(--mint-soft);color:var(--mint);display:flex;align-items:center;justify-content:center;flex:none}
+  .surface-icon svg{width:26px;height:26px}
+  .surface h3{font-family:var(--serif);font-weight:600;font-size:1.5rem;color:var(--cream);line-height:1.1}
+  .surface .aud{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-top:4px}
+  .surface p{color:var(--cream-soft);font-size:.96rem}
+  .surface .idx{position:absolute;top:22px;right:26px;font-family:var(--serif);font-size:2.6rem;color:rgba(245,242,233,.07);font-weight:600;line-height:1}
+  .stack{margin-top:64px;border-top:1px solid var(--line-dark);padding-top:48px}
+  .stack-title{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mint);margin-bottom:26px}
+  .stack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-dark);border:1px solid var(--line-dark);border-radius:var(--r-md);overflow:hidden}
+  .stack-cell{background:var(--forest);padding:20px 18px}
+  .stack-cell .k{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
+  .stack-cell .v{font-size:.9rem;color:var(--cream);font-weight:500;line-height:1.45}
+
+  /* BUILD / GANTT */
+  .gantt-wrap{margin-bottom:46px;overflow-x:auto;padding-bottom:6px}
+  .gantt{min-width:640px;border:1px solid var(--line-light);border-radius:var(--r-md);overflow:hidden;background:var(--paper)}
+  .gantt-row{display:grid;grid-template-columns:185px repeat(8,1fr);align-items:center;border-bottom:1px solid var(--line-light)}
+  .gantt-row.head-row{background:var(--cream-2)}
+  .g-label{padding:13px 16px;font-size:.78rem;font-weight:600;color:var(--ink-soft)}
+  .g-label .pn{font-family:var(--mono);color:var(--moss);font-weight:700;margin-right:7px}
+  .g-wk{padding:11px 0;text-align:center;font-family:var(--mono);font-size:.68rem;color:var(--ink-faint);border-left:1px solid var(--line-light)}
+  .gantt-prow{display:grid;grid-template-columns:185px repeat(8,1fr);border-bottom:1px solid var(--line-light)}
+  .gantt-prow:last-child{border-bottom:none}
+  .gantt-prow:hover .g-bar{filter:brightness(.97)}
+  .g-track{position:relative;height:46px;border-left:1px solid var(--line-light);display:flex;align-items:center}
+  .g-bar{height:30px;width:100%;margin:0 5px;border-radius:9px;background:var(--cream-2);color:var(--ink-soft);display:flex;align-items:center;justify-content:center;padding:0 12px;font-size:.74rem;font-weight:700;transition:.25s;white-space:nowrap;overflow:hidden}
+  .g-bar:hover{background:var(--green-light);color:var(--pine)}
+  .g-bar.active{background:var(--emerald);color:#fff;box-shadow:0 0 0 3px var(--mint-line)}
+  .phase-detail{background:var(--forest);color:var(--cream);border-radius:var(--r-lg);padding:clamp(26px,4vw,44px);box-shadow:var(--shadow-lg);scroll-margin-top:90px}
+  .pd-top{display:flex;flex-wrap:wrap;align-items:flex-start;gap:20px;justify-content:space-between;border-bottom:1px solid var(--line-dark);padding-bottom:26px;margin-bottom:30px}
+  .pd-tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mint);display:flex;align-items:center;gap:12px}
+  .pd-tag .wk{color:var(--gold)}
+  .pd-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.05;color:var(--cream);margin-top:12px}
+  .pd-cols{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(26px,4vw,48px)}
+  .pd-sub{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mint);margin-bottom:16px}
+  .pd-list{list-style:none;display:flex;flex-direction:column;gap:11px}
+  .pd-list li{position:relative;padding-left:24px;font-size:.95rem;color:var(--cream-soft);line-height:1.5}
+  .pd-list li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--mint);opacity:.7}
+  .pd-deliver li::before{border-radius:2px;background:var(--gold)}
+  .pd-outcome{margin-top:28px;padding-top:24px;border-top:1px solid var(--line-dark)}
+  .pd-outcome .lab{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  .pd-outcome p{font-family:var(--serif);font-style:italic;font-size:1.18rem;color:var(--cream);line-height:1.4}
+  .pd-nav{display:flex;gap:10px;margin-top:30px;flex-wrap:wrap}
+  .pd-step{flex:1;min-width:90px;border:1px solid var(--line-dark);border-radius:12px;padding:11px 14px;text-align:left;transition:.22s;color:var(--cream-soft)}
+  .pd-step:hover{border-color:var(--mint-line);background:rgba(111,227,174,.06)}
+  .pd-step.active{background:var(--mint);color:var(--pine);border-color:var(--mint)}
+  .pd-step .pn{font-family:var(--mono);font-size:.64rem;font-weight:700;letter-spacing:.08em}
+  .pd-step .pt{font-size:.78rem;font-weight:600;margin-top:3px;line-height:1.2}
+
+
+  /* SCOPE */
+  .scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .scope-col{border-radius:var(--r-lg);padding:clamp(26px,4vw,40px)}
+  .scope-in{background:var(--forest);color:var(--cream)}
+  .scope-out{background:rgba(245,242,233,.04);border:1px dashed var(--line-dark);color:var(--cream)}
+  .scope-col .sc-head{display:flex;align-items:center;gap:13px;margin-bottom:6px}
+  .scope-col .sc-head h3{font-family:var(--serif);font-weight:600;font-size:1.55rem}
+  .sc-badge{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex:none}
+  .scope-in .sc-badge{background:var(--mint);color:var(--pine)}
+  .scope-out .sc-badge{background:rgba(228,184,91,.16);color:var(--gold)}
+  .sc-badge svg{width:20px;height:20px}
+  .scope-col .sc-sub{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:24px}
+  .scope-in .sc-sub{color:var(--mint)}
+  .scope-out .sc-sub{color:var(--gold)}
+  .sc-list{list-style:none;display:flex;flex-direction:column;gap:13px}
+  .sc-list li{position:relative;padding-left:30px;font-size:.95rem;color:var(--cream-soft);line-height:1.45}
+  .sc-list li svg{position:absolute;left:0;top:2px;width:18px;height:18px}
+  .scope-in .sc-list li svg{color:var(--mint)}
+  .scope-out .sc-list li svg{color:var(--gold)}
+
+  /* NOTES */
+  .notes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:8px}
+  .note{background:var(--paper);border:1px solid var(--line-light);border-radius:var(--r-md);padding:24px 26px}
+  .note .nh{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .note .nh .ni{width:30px;height:30px;border-radius:9px;background:var(--mint-soft);color:var(--emerald);display:flex;align-items:center;justify-content:center;flex:none}
+  .note .nh .ni svg{width:16px;height:16px}
+  .note .nh h4{font-size:.96rem;font-weight:700;color:var(--ink)}
+  .note p{font-size:.9rem;color:var(--ink-soft)}
+
+  /* FOOTER */
+  .foot{background:var(--pine);color:var(--cream)}
+  .foot .wrap{padding-block:clamp(64px,8vw,100px)}
+  .foot-cta{max-width:680px;margin-bottom:60px}
+  .foot-cta .eyebrow{color:var(--mint);margin-bottom:18px}
+  .foot-cta h2{font-family:var(--serif);font-weight:600;font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.04;letter-spacing:-.02em;color:var(--cream)}
+  .foot-cta h2 em{font-style:italic;color:var(--mint)}
+  .foot-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:60px}
+  .fstep{border-top:2px solid var(--mint);padding-top:18px}
+  .fstep .fn{font-family:var(--mono);font-size:.72rem;color:var(--gold);font-weight:700}
+  .fstep h4{font-family:var(--serif);font-weight:600;font-size:1.2rem;margin:8px 0 6px;color:var(--cream)}
+  .fstep p{font-size:.88rem;color:var(--cream-soft)}
+  .foot-meta{display:flex;flex-wrap:wrap;gap:14px 40px;justify-content:space-between;align-items:center;border-top:1px solid var(--line-dark);padding-top:34px}
+  .foot-meta .brand-word{font-size:1.7rem}
+  .meta-grid{display:flex;flex-wrap:wrap;gap:24px 44px}
+  .meta-grid .mi .mk{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-faint)}
+  .meta-grid .mi .mv{font-size:.9rem;color:var(--cream);font-weight:500;margin-top:3px}
+  .valid{font-family:var(--mono);font-size:.72rem;color:var(--cream-faint);margin-top:34px;letter-spacing:.04em}
+
+  /* REVEAL */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* RESPONSIVE */
+  @media(max-width:980px){
+    .hero .wrap{grid-template-columns:1fr;text-align:center}
+    .hero .eyebrow{justify-content:center}
+    .hero-sub{margin-inline:auto}
+    .hero-cta{justify-content:center}
+    .hero-stats{justify-content:center;margin-inline:auto}
+    .hero-vis{order:-1}
+    .pd-cols{grid-template-columns:1fr}
+  }
+  @media(max-width:860px){
+    .nav-links{display:none}
+    .equation{grid-template-columns:1fr 1fr}
+    .equation .eq-op{display:none}
+    .eq-result{grid-column:1/-1}
+    .vision-grid{grid-template-columns:1fr 1fr}
+    .surfaces{grid-template-columns:1fr}
+    .stack-grid{grid-template-columns:1fr 1fr}
+    .scope-grid{grid-template-columns:1fr}
+    .notes-grid{grid-template-columns:1fr}
+    .foot-steps{grid-template-columns:1fr}
+  }
+  @media(max-width:560px){
+    .hero-stats{grid-template-columns:repeat(2,1fr);gap:24px;width:100%}
+    .equation{grid-template-columns:1fr}
+    .eq-result{grid-column:auto}
+    .vision-grid{grid-template-columns:1fr}
+    .stack-grid{grid-template-columns:1fr}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap">
+    <a href="#top" class="brand" aria-label="Spotly home">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 2C9.9 2 5 6.9 5 13c0 7.6 9.5 16.2 9.9 16.6.6.5 1.5.5 2.1 0C17.5 29.2 27 20.6 27 13 27 6.9 22.1 2 16 2Z" fill="#0C3D2B" stroke="#6FE3AE" stroke-width="1.6"/>
+        <circle cx="16" cy="13" r="4.4" fill="#6FE3AE"/>
+      </svg>
+      <span class="brand-word">Spot<b>ly</b></span>
+    </a>
+    <div class="nav-links">
+      <a href="#vision">Vision</a>
+      <a href="#platform">Platform</a>
+      <a href="#build">The Build</a>
+      <a href="#scope">Scope</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">Business &amp; Development Plan</p>
+      <h1>Everything your city offers, in <em>one&nbsp;app.</em></h1>
+      <p class="hero-sub">Spotly is Zimbabwe's lifestyle super‑app — restaurants, activities, events and wellness in a single place to discover, book and pay. This plan ships the full platform in eight focused weeks.</p>
+      <div class="hero-cta">
+        <a href="#build" class="btn btn-primary">Explore the plan
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num" data-count="8">0</div><div class="stat-label">Weeks</div></div>
+        <div><div class="stat-num" data-count="6">0</div><div class="stat-label">Phases</div></div>
+        <div><div class="stat-num" data-count="5">0</div><div class="stat-label">Surfaces</div></div>
+      </div>
+    </div>
+    <div class="hero-vis">
+      <div class="phone-stage">
+        <div class="phone-glow" aria-hidden="true"></div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="scr-status"><span id="scrTime">9:41</span><span class="dots"><i></i><i></i><i></i></span></div>
+            <div class="scr-head">
+              <div class="hi">Good evening, Tariro</div>
+              <div class="word scr-word">Spot<b>ly</b></div>
+            </div>
+            <div class="scr-context"><span id="scrCtxIcon"></span><span class="ct-label" id="scrCtx">Restaurants</span></div>
+            <div class="scr-body">
+              <div class="scr-card" id="scrCard">
+                <div class="scr-img" id="scrImg"><span class="tag" id="scrTag">Featured</span><span id="scrCardIcon"></span></div>
+                <div class="scr-info">
+                  <div class="scr-title" id="scrTitle">Amanzi Restaurant</div>
+                  <div class="scr-meta" id="scrMeta">Fine dining · Borrowdale · ★ 4.8</div>
+                </div>
+              </div>
+              <div class="scr-confirm" id="scrConfirm">
+                <span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="cf-text" id="scrConfirmText">Table for 2 · Confirmed<small>Tonight, 7:30 PM</small></span>
+              </div>
+            </div>
+            <div class="scr-tabs" id="scrTabs"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap"><div class="journey-pills" id="journeyPills"></div></div>
+</header>
+
+<!-- VISION -->
+<section class="section section--light" id="vision">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="eyebrow">The opportunity</p>
+      <h2>Four of the world's best apps, <em>folded into one.</em></h2>
+      <p>Today a night out means juggling separate apps for dining, fitness, events and beauty. Spotly is the single platform that does all of it — and earns on every booking.</p>
+    </div>
+    <div class="equation reveal">
+      <div class="eq-card"><span class="like">Like OpenTable</span><span class="role">Reservations</span><span class="desc">Book the table</span></div>
+      <div class="eq-op">+</div>
+      <div class="eq-card"><span class="like">Like ClassPass</span><span class="role">Activities</span><span class="desc">Book the court</span></div>
+      <div class="eq-op">+</div>
+      <div class="eq-card"><span class="like">Like Eventbrite</span><span class="role">Events</span><span class="desc">Buy the ticket</span></div>
+      <div class="eq-op">=</div>
+      <div class="eq-result"><span class="like">All of it</span><span class="role">Spot<b>ly</b></span><span class="desc">Plus a lifestyle concierge — discover, book, pay, attend.</span></div>
+    </div>
+    <div class="vision-grid">
+      <div class="v-item reveal"><div class="vn">01</div><h3>Restaurants</h3><p>Open the app, find a table and reserve in seconds — confirmation and reminders included.</p></div>
+      <div class="v-item reveal"><div class="vn">02</div><h3>Activities</h3><p>Book a padel court, a class or a studio session with live availability.</p></div>
+      <div class="v-item reveal"><div class="vn">03</div><h3>Events</h3><p>See what's on this week and buy concert, festival or nightlife tickets instantly.</p></div>
+      <div class="v-item reveal"><div class="vn">04</div><h3>Spa &amp; Beauty</h3><p>Book treatments at spas and salons, pay in‑app, check in with a QR code.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="section section--pine" id="platform">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="eyebrow">The platform</p>
+      <h2>One backend. <em>Five connected surfaces.</em></h2>
+      <p>Customers, businesses, drivers and the Spotly team each get a purpose‑built experience — all sharing one secure backend, so a booking flows cleanly from discovery to payout.</p>
+    </div>
+    <div class="surfaces">
+      <div class="surface reveal">
+        <span class="idx">01</span>
+        <div class="surface-top">
+          <span class="surface-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2" stroke-linecap="round"/></svg></span>
+          <div><h3>Customer App</h3><div class="aud">End users</div></div>
+        </div>
+        <p>Discover venues, book and pay, and attend — across every category, on iOS and Android.</p>
+      </div>
+      <div class="surface reveal">
+        <span class="idx">02</span>
+        <div class="surface-top">
+          <span class="surface-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 9l1-4h14l1 4M4 9v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9M4 9h16M9 20v-6h6v6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><h3>Business Dashboard</h3><div class="aud">Restaurants · Spas · Courts · Gyms</div></div>
+        </div>
+        <p>List a venue, manage bookings and availability, run promotions and get paid.</p>
+      </div>
+      <div class="surface reveal">
+        <span class="idx">03</span>
+        <div class="surface-top">
+          <span class="surface-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2" stroke-linecap="round"/></svg></span>
+          <div><h3>Driver App</h3><div class="aud">Delivery drivers</div></div>
+        </div>
+        <p>Accept jobs, navigate with live GPS, track deliveries and withdraw earnings — on iOS and Android.</p>
+      </div>
+      <div class="surface reveal">
+        <span class="idx">04</span>
+        <div class="surface-top">
+          <span class="surface-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 18h7M15.5 18l-2-9h-3M5 9h5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><h3>Driver Dashboard</h3><div class="aud">Driver management</div></div>
+        </div>
+        <p>Manage driver accounts, verify registrations, track delivery operations and review earnings.</p>
+      </div>
+      <div class="surface reveal">
+        <span class="idx">05</span>
+        <div class="surface-top">
+          <span class="surface-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3Z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><h3>Admin Dashboard</h3><div class="aud">Spotly team</div></div>
+        </div>
+        <p>Approve and moderate the marketplace, manage commissions and read the reports.</p>
+      </div>
+    </div>
+    <div class="stack reveal">
+      <div class="stack-title">Proposed technology stack</div>
+      <div class="stack-grid">
+        <div class="stack-cell"><div class="k">Mobile</div><div class="v">React Native (Expo) — one codebase for iOS &amp; Android</div></div>
+        <div class="stack-cell"><div class="k">Dashboards</div><div class="v">Responsive web in React</div></div>
+        <div class="stack-cell"><div class="k">Backend</div><div class="v">Node.js API · PostgreSQL · secure media storage</div></div>
+        <div class="stack-cell"><div class="k">Realtime</div><div class="v">Live availability, driver tracking, support chat</div></div>
+        <div class="stack-cell"><div class="k">Payments</div><div class="v">EcoCash · OneMoney · Visa/Mastercard · bank transfer</div></div>
+        <div class="stack-cell"><div class="k">Notifications</div><div class="v">Push (FCM/APNs) · SMS · email</div></div>
+        <div class="stack-cell"><div class="k">Maps</div><div class="v">Interactive maps, geolocation &amp; directions</div></div>
+        <div class="stack-cell"><div class="k">Wallet‑ready</div><div class="v">Architecture prepared for Apple Pay &amp; Google Pay</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILD -->
+<section class="section section--paper" id="build">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="eyebrow">The build · 6 phases / 8 weeks</p>
+      <h2>A clear path from <em>foundation to launch.</em></h2>
+      <p>Phases 1–4 build the five surfaces and everything around them. Phase 5 is dedicated testing, and Phase 6 is debugging, optimization and deployment — so Spotly ships stable and store‑ready. Tap any phase to see what's inside.</p>
+    </div>
+    <div class="gantt-wrap reveal"><div class="gantt" id="gantt"></div></div>
+    <div class="phase-detail reveal" id="phaseDetail">
+      <div class="pd-top">
+        <div>
+          <div class="pd-tag"><span id="pdNum">Phase 01</span><span class="wk" id="pdWeeks">Weeks 1–2</span></div>
+          <div class="pd-title" id="pdTitle">Foundation &amp; Customer App</div>
+        </div>
+      </div>
+      <div class="pd-cols">
+        <div><div class="pd-sub">Scope</div><ul class="pd-list" id="pdScope"></ul></div>
+        <div><div class="pd-sub">Deliverables</div><ul class="pd-list pd-deliver" id="pdDeliver"></ul></div>
+      </div>
+      <div class="pd-outcome"><div class="lab">Outcome</div><p id="pdOutcome"></p></div>
+      <div class="pd-nav" id="pdNav"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCOPE -->
+<section class="section section--forest" id="scope">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="eyebrow">What you get</p>
+      <h2>Everything that ships — and <em>what comes next.</em></h2>
+      <p>The 8‑week engagement delivers the full platform below. A clearly defined future roadmap is ready to quote when Spotly is live and growing.</p>
+    </div>
+    <div class="scope-grid">
+      <div class="scope-col scope-in reveal">
+        <div class="sc-head"><span class="sc-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>Included</h3></div>
+        <div class="sc-sub">In this 8‑week build</div>
+        <ul class="sc-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>All Phase 1–4 features across the five surfaces</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>One iOS and one Android app (single React Native codebase) for Customer &amp; Driver</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Web Business Dashboard and web Admin Dashboard</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Payments: EcoCash, OneMoney, Visa/Mastercard, bank transfer</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Push, SMS and email notifications</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Testing/QA and debugging (Phases 5–6)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Store submission support, deployment, documentation and a handover session</li>
+        </ul>
+      </div>
+      <div class="scope-col scope-out reveal">
+        <div class="sc-head"><span class="sc-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 8v5M12 16.5v.01M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0Z" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>Future roadmap</h3></div>
+        <div class="sc-sub">Quoted separately as Phase 2</div>
+        <ul class="sc-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14" stroke-linecap="round"/></svg>Concierge chat ("Plan my weekend") and AI recommendations</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14" stroke-linecap="round"/></svg>Group bookings, corporate accounts, membership subscriptions</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14" stroke-linecap="round"/></svg>Hotel bookings, travel experiences, car‑hire bookings</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14" stroke-linecap="round"/></svg>Private event bookings</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14" stroke-linecap="round"/></svg>Apple Pay / Google Pay — architecture ready, activation later</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTES -->
+<section class="section section--paper" id="notes">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="eyebrow">Assumptions &amp; notes</p>
+      <h2>How we keep it <em>on time and on budget.</em></h2>
+    </div>
+    <div class="notes-grid">
+      <div class="note reveal">
+        <div class="nh"><span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h4>What the client provides</h4></div>
+        <p>Branding assets, initial content (venues and events) and access to payment‑provider merchant accounts — EcoCash, OneMoney and a card acquirer.</p>
+      </div>
+      <div class="note reveal">
+        <div class="nh"><span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3" stroke-linecap="round"/></svg></span><h4>Third‑party costs</h4></div>
+        <p>Developer accounts, payment‑gateway fees, SMS/push credits, map and API usage and hosting are billed at cost or covered directly by the client.</p>
+      </div>
+      <div class="note reveal">
+        <div class="nh"><span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h4>Timely feedback</h4></div>
+        <p>The timeline assumes prompt client feedback at each milestone. User Acceptance Testing in Week 7 needs client availability to sign off.</p>
+      </div>
+      <div class="note reveal">
+        <div class="nh"><span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 7h16M4 12h16M4 17h10" stroke-linecap="round"/></svg></span><h4>Fixed scope</h4></div>
+        <p>Scope is fixed to this document. New features are handled with a simple change‑request and may affect the timeline.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-cta reveal">
+      <p class="eyebrow">Ready when you are</p>
+      <h2>Let's build <em>Spotly.</em></h2>
+    </div>
+    <div class="foot-steps reveal">
+      <div class="fstep"><div class="fn">Step 01</div><h4>Approve the plan</h4><p>Sign off this plan to kick off Week 1.</p></div>
+      <div class="fstep"><div class="fn">Step 02</div><h4>Build together</h4><p>Eight weeks across six phases, with check‑ins at every milestone.</p></div>
+      <div class="fstep"><div class="fn">Step 03</div><h4>Launch live</h4><p>Store‑ready apps, live dashboards and a full handover session.</p></div>
+    </div>
+    <div class="foot-meta">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M16 2C9.9 2 5 6.9 5 13c0 7.6 9.5 16.2 9.9 16.6.6.5 1.5.5 2.1 0C17.5 29.2 27 20.6 27 13 27 6.9 22.1 2 16 2Z" fill="#0C3D2B" stroke="#6FE3AE" stroke-width="1.6"/>
+          <circle cx="16" cy="13" r="4.4" fill="#6FE3AE"/>
+        </svg>
+        <span class="brand-word">Spot<b>ly</b></span>
+      </div>
+      <div class="meta-grid">
+        <div class="mi"><div class="mk">Prepared for</div><div class="mv">Spotly</div></div>
+        <div class="mi"><div class="mk">Prepared by</div><div class="mv">Development Team</div></div>
+        <div class="mi"><div class="mk">Engagement</div><div class="mv">Fixed‑scope mobile build</div></div>
+        <div class="mi"><div class="mk">Date</div><div class="mv">26 June 2026</div></div>
+      </div>
+    </div>
+    <div class="valid">This proposal is valid for 30 days from the date above.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var ICON = {
+    fork:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3v7a2 2 0 0 0 2 2v9M5 3v4M9 3v4M16 3c-1.5 0-2.5 2-2.5 5s1 4 2.5 4v9" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    racket:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="8" rx="5.6" ry="6.4"/><path d="M12 2v12M6.6 8h10.8M12 14.4V22" stroke-linecap="round"/></svg>',
+    ticket:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 0 0 6v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-6V7Z" stroke-linejoin="round"/><path d="M14 5v14" stroke-dasharray="2 2"/></svg>',
+    spa:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c0-5 3-8 8-9-1 5-4 8-8 9ZM12 21c0-5-3-8-8-9 1 5 4 8 8 9ZM12 21c0-4 0-8 0-12" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+  };
+
+  /* HERO JOURNEY SWITCHER */
+  var journeys = [
+    {cat:'Restaurants', tag:'Featured', icon:ICON.fork, title:'Amanzi Restaurant', meta:'Fine dining · Borrowdale · ★ 4.8', grad:'linear-gradient(135deg,#11543C,#2E9B6E)', confirm:'Table for 2 · Confirmed', sub:'Tonight, 7:30 PM', pillLabel:'Book a table'},
+    {cat:'Activities', tag:'Live now', icon:ICON.racket, title:'Padel Court · Court 3', meta:'Sports & activities · Newlands', grad:'linear-gradient(135deg,#0C3D2B,#1C7A55)', confirm:'Padel court · Booked', sub:'Saturday, 9:00 AM', pillLabel:'Book a padel court'},
+    {cat:'Events this week', tag:'On sale', icon:ICON.ticket, title:'Live in the Gardens', meta:'Concert · Friday night', grad:'linear-gradient(135deg,#11543C,#57C893)', confirm:'2 × tickets · Reserved', sub:'Friday, from 6:00 PM', pillLabel:'Buy a concert ticket'},
+    {cat:'Spa & Beauty', tag:'Popular', icon:ICON.spa, title:'Serenity Day Spa', meta:'Wellness · Avondale · ★ 4.9', grad:'linear-gradient(135deg,#0C3D2B,#2E9B6E)', confirm:'Treatment · Reserved', sub:'Sunday, 2:00 PM', pillLabel:'Book a treatment'}
+  ];
+
+  var pillsWrap = document.getElementById('journeyPills');
+  var tabsWrap  = document.getElementById('scrTabs');
+  journeys.forEach(function(j,i){
+    var p = document.createElement('button');
+    p.className='jpill'+(i===0?' active':'');
+    p.innerHTML = j.icon + '<span>'+j.pillLabel+'</span>';
+    p.setAttribute('aria-pressed', i===0?'true':'false');
+    p.addEventListener('click', function(){ setJourney(i); });
+    pillsWrap.appendChild(p);
+    var t = document.createElement('button');
+    t.className='scr-tab'+(i===0?' active':'');
+    t.innerHTML = j.icon;
+    t.setAttribute('aria-label', j.cat);
+    t.addEventListener('click', function(){ setJourney(i); });
+    tabsWrap.appendChild(t);
+  });
+
+  var els = {
+    ctx:document.getElementById('scrCtx'), ctxIcon:document.getElementById('scrCtxIcon'),
+    img:document.getElementById('scrImg'), tag:document.getElementById('scrTag'),
+    cardIcon:document.getElementById('scrCardIcon'), title:document.getElementById('scrTitle'),
+    meta:document.getElementById('scrMeta'), confirmText:document.getElementById('scrConfirmText'),
+    card:document.getElementById('scrCard'), confirm:document.getElementById('scrConfirm')
+  };
+  function paint(j){
+    els.ctx.textContent=j.cat; els.ctxIcon.innerHTML=j.icon;
+    els.img.style.background=j.grad; els.tag.textContent=j.tag;
+    els.cardIcon.innerHTML=j.icon; els.title.textContent=j.title; els.meta.textContent=j.meta;
+    els.confirmText.innerHTML=j.confirm+'<small>'+j.sub+'</small>';
+  }
+  paint(journeys[0]);
+  var curJ=0;
+  function setJourney(i){
+    if(i===curJ) return; curJ=i; var j=journeys[i];
+    document.querySelectorAll('.jpill').forEach(function(el,k){el.classList.toggle('active',k===i);el.setAttribute('aria-pressed',k===i?'true':'false');});
+    document.querySelectorAll('.scr-tab').forEach(function(el,k){el.classList.toggle('active',k===i);});
+    if(reduce){ paint(j); return; }
+    els.card.classList.add('swap'); els.confirm.classList.add('swap');
+    setTimeout(function(){ paint(j); els.card.classList.remove('swap'); els.confirm.classList.remove('swap'); },220);
+  }
+  var interacted=false;
+  ['click','keydown'].forEach(function(ev){ document.addEventListener(ev,function(){interacted=true;},{once:true}); });
+  if(!reduce){
+    var auto=setInterval(function(){ if(interacted){clearInterval(auto);return;} setJourney((curJ+1)%journeys.length); },2600);
+  }
+
+  /* COUNT UP */
+  function countUp(el){
+    var target=+el.getAttribute('data-count');
+    var prefix=el.getAttribute('data-prefix')||'';
+    var comma=el.getAttribute('data-comma');
+    if(reduce){ el.textContent=prefix+(comma?target.toLocaleString('en-US'):target); return; }
+    var dur=1400, start=null;
+    function step(ts){
+      if(!start)start=ts; var p=Math.min((ts-start)/dur,1);
+      var eased=1-Math.pow(1-p,3); var val=Math.round(eased*target);
+      el.textContent=prefix+(comma?val.toLocaleString('en-US'):val);
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* PHASES */
+  var phases=[
+    {n:'01',title:'Foundation & Customer App',weeks:'Weeks 1–2',span:[1,2],
+     scope:['Project setup, architecture, shared design system, navigation & light/dark theming','Authentication via email, phone, Google and Apple','User profile management — details, preferences, avatar, settings','Search across the platform','Browse by category: restaurants, cafés, padel courts, spas, salons, studios, gyms, events & activities','Location‑based recommendations tailored to the user','Saved favourites / wishlist','Reviews & ratings to browse and read','Home & discovery screens with venue cards and featured content'],
+     deliver:['Installable Customer App (iOS & Android) with auth, profiles, search, browse and favourites','Core backend, database schema and APIs for users, venues and categories','A design system reused across every later phase'],
+     outcome:'A user can sign up, explore every category, search, and save places — the spine the rest of the platform plugs into.'},
+    {n:'02',title:'Booking Engine, Payments & Business Dashboard',weeks:'Weeks 3–4',span:[3,4],
+     scope:['Booking system with real‑time availability and instant booking','Appointment scheduling, restaurant reservations and event ticket purchases','Confirmation, reminders, cancellation and rescheduling','QR‑code check‑in','In‑app payments: EcoCash, OneMoney, Visa/Mastercard, bank transfer','Automatic commission deduction and business payouts','Business registration, verification and profile management','Manage services, set pricing and availability, accept/reject bookings','Earnings view, customer management, promotions, analytics and reviews'],
+     deliver:['End‑to‑end booking → payment → confirmation across all categories','Payment integrations with automatic commission split','Web‑based Business Dashboard for onboarding and daily management'],
+     outcome:'A real transaction works end‑to‑end — a customer books and pays, and a verified business lists services and manages bookings and earnings.'},
+    {n:'03',title:'Driver Dashboard & Admin Dashboard',weeks:'Week 5',span:[5,5],
+     scope:['Driver registration, verification and profile','Accept or reject deliveries','GPS navigation, live location tracking and delivery status updates','Delivery history, earnings dashboard and withdrawal requests','Customer‑contact feature','Admin: manage all users, businesses and drivers','Approve business listings and driver accounts','Manage bookings, payments, commissions, categories, events and promotions','Reports, support management, content moderation and platform settings'],
+     deliver:['Driver app flow with verification, job acceptance, live tracking and earnings','Admin web dashboard with full oversight of the marketplace, payments and content'],
+     outcome:'Spotly can approve and govern the marketplace, and delivery operations run end‑to‑end with live tracking and driver payouts.'},
+    {n:'04',title:'Events, Discovery, Maps & Marketing',weeks:'Week 6',span:[6,6],
+     scope:['Weekly events calendar: concerts, festivals, networking, sports and nightlife','Event ticket booking, reminders and recommendations','“What\'s Happening This Week”, trending venues and events, staff picks','Date night, family activities and a weekend planner','Interactive map: nearby businesses, directions, distance and location filtering','Promo codes, referral programme, loyalty rewards and influencer codes','Featured business placements and special offers','Email, SMS and push marketing, plus customer support chat'],
+     deliver:['Events hub with discovery, ticketing and reminders','Curated discovery & lifestyle sections and an interactive map','Marketing toolkit: promos, referrals, loyalty, featured placements and messaging'],
+     outcome:'Spotly becomes a destination users open weekly — discovering what\'s on, getting recommendations, and being re‑engaged through promotions and loyalty.'},
+    {n:'05',title:'Testing & Quality Assurance',weeks:'Week 7',span:[7,7],
+     scope:['Functional testing of every journey — book a table, a court, a ticket, a treatment','Cross‑platform & device testing across iOS and Android, multiple sizes and OS versions','Payment testing in sandbox, including commission split and payouts','Booking edge cases: double bookings, cancellations, rescheduling, QR check‑in, conflicts','Role‑based testing across Customer, Business, Driver and Admin','Performance & load testing and a security review','User Acceptance Testing with the client, with a tracked issue list'],
+     deliver:['Test plan and an executed test report','A prioritized defect / issue log from QA and UAT','A sign‑off checklist per surface'],
+     outcome:'A clear, evidence‑based picture of quality and a ranked list of everything to fix before launch.'},
+    {n:'06',title:'Debugging, Optimization & Deployment',weeks:'Week 8',span:[8,8],
+     scope:['Bug fixing of all QA/UAT issues, prioritized critical → minor','Performance optimization — load times, list performance, media handling','Stability hardening — error handling, edge cases, offline / poor‑network behaviour','Final UI/UX polish and an accessibility pass','App Store & Google Play submission preparation','Production deployment of backend and dashboards','Handover: source code, documentation, credentials and a training session'],
+     deliver:['Stable, store‑ready Customer & Driver apps and live Business & Admin dashboards','Production deployment plus submission packages','Documentation and a knowledge‑transfer session'],
+     outcome:'Spotly is live, stable and in the hands of real users and businesses.'}
+  ];
+
+  /* GANTT */
+  var gantt=document.getElementById('gantt');
+  var headRow=document.createElement('div'); headRow.className='gantt-row head-row';
+  var hl=document.createElement('div'); hl.className='g-label'; hl.textContent='Phase'; headRow.appendChild(hl);
+  for(var w=1;w<=8;w++){ var wk=document.createElement('div'); wk.className='g-wk'; wk.textContent='W'+w; headRow.appendChild(wk); }
+  gantt.appendChild(headRow);
+
+  phases.forEach(function(p,i){
+    var row=document.createElement('div'); row.className='gantt-prow';
+    var lab=document.createElement('div'); lab.className='g-label';
+    lab.innerHTML='<span class="pn">'+p.n+'</span>'+p.title;
+    row.appendChild(lab);
+    var track=document.createElement('div'); track.className='g-track';
+    track.style.gridColumn=(p.span[0]+1)+' / '+(p.span[1]+2);
+    var bar=document.createElement('button'); bar.className='g-bar'+(i===0?' active':'');
+    bar.innerHTML='<span>'+p.n+'</span>';
+    bar.setAttribute('aria-label','Phase '+p.n+': '+p.title+', '+p.weeks);
+    bar.addEventListener('click', function(){ setPhase(i,true); });
+    track.appendChild(bar); row.appendChild(track);
+    gantt.appendChild(row);
+  });
+
+  var pdNav=document.getElementById('pdNav');
+  phases.forEach(function(p,i){
+    var s=document.createElement('button'); s.className='pd-step'+(i===0?' active':'');
+    var shortName = p.title.split(' & ')[0].split(',')[0];
+    s.innerHTML='<div class="pn">PHASE '+p.n+'</div><div class="pt">'+shortName+'</div>';
+    s.addEventListener('click', function(){ setPhase(i,false); });
+    pdNav.appendChild(s);
+  });
+
+  var pd={num:document.getElementById('pdNum'),weeks:document.getElementById('pdWeeks'),title:document.getElementById('pdTitle'),
+    scope:document.getElementById('pdScope'),deliver:document.getElementById('pdDeliver'),
+    outcome:document.getElementById('pdOutcome'),detail:document.getElementById('phaseDetail')};
+  function fill(list,arr){ list.innerHTML=''; arr.forEach(function(t){var li=document.createElement('li');li.textContent=t;list.appendChild(li);}); }
+  function setPhase(i,scroll){
+    var p=phases[i];
+    pd.num.textContent='Phase '+p.n; pd.weeks.textContent=p.weeks; pd.title.textContent=p.title;
+    fill(pd.scope,p.scope); fill(pd.deliver,p.deliver); pd.outcome.textContent=p.outcome;
+    document.querySelectorAll('.g-bar').forEach(function(el,k){el.classList.toggle('active',k===i);});
+    document.querySelectorAll('.pd-step').forEach(function(el,k){el.classList.toggle('active',k===i);});
+    if(scroll){ pd.detail.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'}); }
+  }
+  setPhase(0,false);
+
+
+  /* OBSERVERS */
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.16,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  var statSeen=false;
+  var so=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting && !statSeen){ statSeen=true; document.querySelectorAll('[data-count]').forEach(countUp); so.disconnect(); } });
+  },{threshold:.4});
+  var statsBlock=document.querySelector('.hero-stats');
+  if(statsBlock) so.observe(statsBlock);
+
+
+  /* SCROLL SPY */
+  var navLinks=Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  var sections=navLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  var spy=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var id='#'+e.target.id;
+        navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')===id); });
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  sections.forEach(function(s){ if(s) spy.observe(s); });
+
+  /* PHONE CLOCK */
+  function tick(){
+    var d=new Date(); var h=d.getHours(), m=d.getMinutes();
+    var hh=((h%12)||12); var mm=(m<10?'0':'')+m;
+    var t=document.getElementById('scrTime'); if(t) t.textContent=hh+':'+mm;
+  }
+  tick(); setInterval(tick,30000);
+})();
+</script>
+</body>
+</html>
